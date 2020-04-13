@@ -50,13 +50,13 @@ CQ_INIT {
     });
 
     on_group_message([](const GroupMessageEvent &event) {
-        static const set<int64_t> ENABLED_GROUPS = {123456, 1059644011};
+        static const set<int64_t> ENABLED_GROUPS = {};
 
         if (ENABLED_GROUPS.count(event.group_id) == 0) return; // 不在启用的群中, 忽略
         try {
-            if (event.message == "瓜瓜今日黄历") {
+            if (event.message == "") {
                 if (difftime(event.time, left_time) < 2.5) {
-                    send_group_message(event.group_id, "请求太频繁瓜瓜罢工了∠( ᐛ 」∠)_");
+                    send_group_message(event.group_id, "  ");
                 } else {
                     left_time = event.time;
                     huangli(event);
